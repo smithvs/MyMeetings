@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:MyMeetings.Converters"
+             xmlns:viewModels="clr-namespace:MyMeetings.ViewModels;assembly=MyMeetings"
+             mc:Ignorable="d"
+             Title="{Binding Title}"
+             x:Class="MyMeetings.Views.MeetingsPage"
+             x:Name="meetingsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeStringToDateStringConverter x:Key="DateTimeStringToDateStringConverter" />
+            <converters:DateTimeStringToTimeStringConverter x:Key="DateTimeStringToTimeStringConverter" />
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5,5"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:MeetingsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="Назад" Command="{Binding PrevDayCommand}"/>
+                <Label Grid.Column="1" 
+                       Text="{Binding ActualDay, Converter={StaticResource DateTimeStringToDateStringConverter}}" 
+                       FontSize="25"
+                       HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Button Grid.Column="2" Text="Вперед" Command="{Binding NextDayCommand}"/>
+            </Grid>
+
+            <ListView Grid.Row="1" x:Name="meetingList"
+                      ItemsSource="{Binding MeetingOnActualDay}"
+                      ItemSelected="OnItemSelected"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Title}" TextColor="Green" FontAttributes="Bold" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding Client}" TextColor="Green" FontAttributes="Italic"/>
+                                </StackLayout>
+                                <Label Text="{Binding Place}" TextColor="Green" Margin="10,0,0,0"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding TimeStart, Converter={StaticResource DateTimeStringToTimeStringConverter}}" Margin="10,0,0,0"/>
+                                    <Label Text="-" Margin="5,0"/>
+                                    <Label Text="{Binding TimeEnd, Converter={StaticResource DateTimeStringToTimeStringConverter}}"/>
+                                </StackLayout>
+                                    
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Grid.Row="2" 
+                    Text="Добавить"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Command="{Binding AddMeetingCommand}" Clicked="Button_OnClicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

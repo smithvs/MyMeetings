@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converters="clr-namespace:MyMeetings.Converters"
+             mc:Ignorable="d"
+             x:Class="MyMeetings.Views.BaseMeetingDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:DayWeekConverter x:Key="DayWeekConverter" />
+            <converters:TimeStringToTimeConverter x:Key="TimeStringToTimeConverter"/>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5,5"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Отмена" Clicked="CancelButton_OnClicked"/>
+        <ToolbarItem Text="Сохранить" Clicked="SaveButton_OnClicked" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableRoot>
+                        <TableSection Title="Основные данные">
+                            <EntryCell Label="Тема:   " Keyboard="Default" Text="{Binding BMeeting.Title}"/>
+                            <EntryCell Label="С кем:  " Keyboard="Default" Text="{Binding BMeeting.Client}"/>
+                            <EntryCell Label="Место: " Keyboard="Default" Text="{Binding BMeeting.Place}"/>
+                        </TableSection>
+                        <TableSection Title="Период проведения встреч">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Начало:" VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <DatePicker Format="D" Date="{Binding BMeeting.PeriodDateStart}"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Конец:  " VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <DatePicker Format="D" Date="{Binding BMeeting.PeriodDateEnd}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection Title="Время встречи">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Начало:" VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <TimePicker Time="{Binding BMeeting.MeetingTimeStart, Converter={StaticResource TimeStringToTimeConverter}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Конец:  " VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <TimePicker Time="{Binding BMeeting.MeetingTimeEnd, Converter={StaticResource TimeStringToTimeConverter}}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection Title="Дополнительная информация">
+                            <EntryCell Label="День:      "  Text="{Binding BMeeting.DayWeek, Converter={StaticResource DayWeekConverter}}" IsEnabled="False"/>
+                            <EntryCell Label="Доход:    "  Keyboard="Numeric" Text="{Binding BMeeting.Income}"/>
+                            <EntryCell Label="Пометки:"  Keyboard="Default" Text="{Binding BMeeting.Notation}"/>
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+            <Button  HeightRequest="30" Text="Удалить"
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="DeleteButton_OnClicked"
+                    Command="{Binding DeleteBaseMeetingCommand}"
+                    IsVisible="{Binding BMeeting.Id}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
