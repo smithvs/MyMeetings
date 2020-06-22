@@ -11,13 +11,13 @@ namespace MyMeetings.Models.BaseMeeting
 
         public string Place { get; set; }
 
-        public string PeriodDateStart { get; set; }
+        public DateTime PeriodDateStart { get; set; }
 
-        public string PeriodDateEnd { get; set; }
+        public DateTime PeriodDateEnd { get; set; }
 
-        public string MeetingTimeStart { get; set; }
+        public DateTime MeetingTimeStart { get; set; }
 
-        public string MeetingTimeEnd { get; set; }
+        public DateTime MeetingTimeEnd { get; set; }
 
         public int DayWeek { get; set; }
 

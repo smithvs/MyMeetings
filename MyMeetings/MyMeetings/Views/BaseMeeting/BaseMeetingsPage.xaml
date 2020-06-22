@@ -12,6 +12,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter" />
             <converters:DayWeekConverter x:Key="DayWeekConverter" />
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="#004D40" />
@@ -67,9 +68,9 @@
                                 </StackLayout>
                                 <Label Text="{Binding Place}" TextColor="Green" Margin="10,0,0,0"/>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding MeetingTimeStart}" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding MeetingTimeStart, Converter={StaticResource DateTimeToTimeSpanConverter}}" Margin="10,0,0,0"/>
                                     <Label Text="-" Margin="5,0"/>
-                                    <Label Text="{Binding MeetingTimeEnd}"/>
+                                    <Label Text="{Binding MeetingTimeEnd, Converter={StaticResource DateTimeToTimeSpanConverter}}"/>
                                 </StackLayout>
                                     
                             </StackLayout>

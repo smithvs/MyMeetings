@@ -40,10 +40,8 @@ namespace MyMeetings.ViewModels
             SaveMeetingCommand = new Command(async () => await SaveMeeting());
             DeleteMeetingCommand = new Command(async () => await DeleteMeeting());
             Meeting = meeting;
-            MeetingTimeStart = DateTime.ParseExact(Meeting.TimeStart, "yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture)
-                .TimeOfDay;
-            MeetingTimeEnd = DateTime.ParseExact(Meeting.TimeEnd, "yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture)
-                .TimeOfDay;
+            MeetingTimeStart = Meeting.TimeStart.TimeOfDay;
+            MeetingTimeEnd = Meeting.TimeEnd.TimeOfDay;
         }
 
         private async Task DeleteMeeting()
@@ -53,9 +51,8 @@ namespace MyMeetings.ViewModels
 
         private async Task SaveMeeting()
         {
-            var date = DateTime.ParseExact(Meeting.TimeStart, "yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture).Date;
-            Meeting.TimeStart = (date + MeetingTimeStart).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture);
-            Meeting.TimeEnd = (date + MeetingTimeEnd).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture);
+            Meeting.TimeStart = Meeting.TimeStart.Date + MeetingTimeStart;
+            Meeting.TimeEnd = Meeting.TimeEnd.Date + MeetingTimeEnd;
             if (Meeting.Id == 0)
             {
                 await MeetingDataStore.AddMeetingAsync(Meeting);

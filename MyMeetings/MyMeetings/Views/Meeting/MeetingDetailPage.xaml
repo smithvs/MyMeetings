@@ -50,7 +50,12 @@
                             </ViewCell>
                         </TableSection>
                         <TableSection Title="Дополнительная информация">
-                            <EntryCell x:Name="dateMeet" Label="Дата:      "  Text="{Binding Meeting.TimeStart, Mode=OneWay, Converter={StaticResource UpperDateTimeStringToDateStringConverter}}"  IsEnabled="False"/>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Дата:  " VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <DatePicker Format="D" Date="{Binding Meeting.TimeStart}"/>
+                                </StackLayout>
+                            </ViewCell>
                             <EntryCell Label="Доход:    "  Keyboard="Numeric" Text="{Binding Meeting.Income}"/>
                             <EntryCell Label="Пометки:"  Keyboard="Default" Text="{Binding Meeting.Notation}"/>
                         </TableSection>

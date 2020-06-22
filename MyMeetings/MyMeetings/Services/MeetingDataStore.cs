@@ -32,10 +32,8 @@ namespace MyMeetings.Services
 
         public async Task<bool> AddMeetingsFromBaseAsync(BaseMeeting baseMeeting)
         {
-            DateTime periodStart =
-                DateTime.ParseExact(baseMeeting.PeriodDateStart, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-            DateTime periodEnd =
-                DateTime.ParseExact(baseMeeting.PeriodDateEnd, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            DateTime periodStart = new DateTime(baseMeeting.PeriodDateStart.Ticks);
+            DateTime periodEnd = new DateTime(baseMeeting.PeriodDateStart.Ticks);
             while (periodStart <= periodEnd)
             {
                 if ((int)periodStart.DayOfWeek == baseMeeting.DayWeek)
@@ -46,8 +44,8 @@ namespace MyMeetings.Services
                         Title = baseMeeting.Title,
                         Client = baseMeeting.Client,
                         Place = baseMeeting.Place,
-                        TimeStart = (periodStart.Date + DateTime.ParseExact(baseMeeting.MeetingTimeStart, "HH:mm", CultureInfo.InvariantCulture).TimeOfDay).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture),
-                        TimeEnd = (periodStart.Date + DateTime.ParseExact(baseMeeting.MeetingTimeEnd, "HH:mm", CultureInfo.InvariantCulture).TimeOfDay).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture),
+                        TimeStart = (periodStart.Date +baseMeeting.MeetingTimeStart.TimeOfDay),
+                        TimeEnd = (periodEnd.Date + baseMeeting.MeetingTimeEnd.TimeOfDay),
                         Income = baseMeeting.Income,
                         Notation = baseMeeting.Notation,
 
@@ -62,10 +60,8 @@ namespace MyMeetings.Services
 
         public Task<bool> AddMeetingsFromBase(BaseMeeting baseMeeting)
         {
-            DateTime periodStart =
-                DateTime.ParseExact(baseMeeting.PeriodDateStart, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-            DateTime periodEnd =
-                DateTime.ParseExact(baseMeeting.PeriodDateEnd, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            DateTime periodStart = new DateTime(baseMeeting.PeriodDateStart.Ticks);
+            DateTime periodEnd = new DateTime(baseMeeting.PeriodDateEnd.Ticks);
             while (periodStart <= periodEnd)
             {
                 if ((int)periodStart.DayOfWeek == baseMeeting.DayWeek)
@@ -76,8 +72,8 @@ namespace MyMeetings.Services
                         Title = baseMeeting.Title,
                         Client = baseMeeting.Client,
                         Place = baseMeeting.Place,
-                        TimeStart = (periodStart.Date + DateTime.ParseExact(baseMeeting.MeetingTimeStart, "HH:mm", CultureInfo.InvariantCulture).TimeOfDay).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture),
-                        TimeEnd = (periodStart.Date + DateTime.ParseExact(baseMeeting.MeetingTimeEnd, "HH:mm", CultureInfo.InvariantCulture).TimeOfDay).ToString("yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture),
+                        TimeStart = (periodStart.Date + baseMeeting.MeetingTimeStart.TimeOfDay),
+                        TimeEnd = (periodEnd.Date + baseMeeting.MeetingTimeEnd.TimeOfDay),
                         Income = baseMeeting.Income,
                         Notation = baseMeeting.Notation,
 

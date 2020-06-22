@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -25,11 +26,11 @@ namespace MyMeetings.Services
                 
                 Client = "Евгений",
                 DayWeek = 3,
-                Income = 100,
-                MeetingTimeEnd = "12:00",
-                MeetingTimeStart = "10:30",
-                PeriodDateEnd = "01.08.2020",
-                PeriodDateStart = "01.06.2020",
+                Income = 200,
+                MeetingTimeEnd = DateTime.ParseExact("12:00","HH:mm",CultureInfo.InvariantCulture),
+                MeetingTimeStart = DateTime.ParseExact("10:30", "HH:mm", CultureInfo.InvariantCulture),
+                PeriodDateEnd = DateTime.ParseExact("01.08.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                PeriodDateStart = DateTime.ParseExact("01.06.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
                 Place = "Революции, 10-123",
                 Notation = "Есть кошка",
                 Title = "Математика",
@@ -42,11 +43,11 @@ namespace MyMeetings.Services
             {
                 Client = "Пётр",
                 DayWeek = 4,
-                Income = 100,
-                MeetingTimeEnd = "14:00",
-                MeetingTimeStart = "12:30",
-                PeriodDateEnd = "12.09.2020",
-                PeriodDateStart = "01.05.2020",
+                Income = 200,
+                MeetingTimeEnd = DateTime.ParseExact("14:00", "HH:mm", CultureInfo.InvariantCulture),
+                MeetingTimeStart = DateTime.ParseExact("12:30", "HH:mm", CultureInfo.InvariantCulture),
+                PeriodDateEnd = DateTime.ParseExact("12.09.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                PeriodDateStart = DateTime.ParseExact("01.05.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
                 Place = "кв.17",
                 Notation = "",
                 Title = "Математика ЕГЭ",
@@ -59,11 +60,11 @@ namespace MyMeetings.Services
             {
                 Client = "Олег",
                 DayWeek = 4,
-                Income = 100,
-                MeetingTimeEnd = "11:00",
-                MeetingTimeStart = "09:30",
-                PeriodDateEnd = "01.07.2020",
-                PeriodDateStart = "01.06.2020",
+                Income = 300,
+                MeetingTimeEnd = DateTime.ParseExact("11:00", "HH:mm", CultureInfo.InvariantCulture),
+                MeetingTimeStart = DateTime.ParseExact("09:30", "HH:mm", CultureInfo.InvariantCulture),
+                PeriodDateEnd = DateTime.ParseExact("12.07.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
+                PeriodDateStart = DateTime.ParseExact("01.06.2020", "dd.MM.yyyy", CultureInfo.InvariantCulture),
                 Place = "Станиславского, 12",
                 Notation = "язык С#",
                 Title = "Программирование",

@@ -12,8 +12,8 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter" />
             <converters:DateTimeStringToDateStringConverter x:Key="DateTimeStringToDateStringConverter" />
-            <converters:DateTimeStringToTimeStringConverter x:Key="DateTimeStringToTimeStringConverter" />
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="#004D40" />
                 <Setter Property="BackgroundColor" Value="#80CBC4" />
@@ -27,7 +27,7 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
     <ContentPage.BindingContext>
         <viewModels:MeetingsViewModel/>
     </ContentPage.BindingContext>
@@ -68,9 +68,9 @@
                                 </StackLayout>
                                 <Label Text="{Binding Place}" TextColor="Green" Margin="10,0,0,0"/>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding TimeStart, Converter={StaticResource DateTimeStringToTimeStringConverter}}" Margin="10,0,0,0"/>
+                                    <Label Text="{Binding TimeStart, Converter={StaticResource DateTimeToTimeSpanConverter}}" Margin="10,0,0,0"/>
                                     <Label Text="-" Margin="5,0"/>
-                                    <Label Text="{Binding TimeEnd, Converter={StaticResource DateTimeStringToTimeStringConverter}}"/>
+                                    <Label Text="{Binding TimeEnd, Converter={StaticResource DateTimeToTimeSpanConverter}}"/>
                                 </StackLayout>
                                     
                             </StackLayout>

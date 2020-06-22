@@ -7,9 +7,10 @@
              x:Class="MyMeetings.Views.BaseMeetingDetailPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            
             <converters:DayWeekConverter x:Key="DayWeekConverter" />
-            <converters:TimeStringToTimeConverter x:Key="TimeStringToTimeConverter"/>
+
+            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter"/>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="#004D40" />
                 <Setter Property="BackgroundColor" Value="#80CBC4" />
@@ -53,13 +54,13 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Начало:" VerticalOptions="Center" Margin="15,0,0,0"/>
-                                    <TimePicker Time="{Binding BMeeting.MeetingTimeStart, Converter={StaticResource TimeStringToTimeConverter}}"/>
+                                    <TimePicker Time="{Binding BMeeting.MeetingTimeStart, Converter={StaticResource DateTimeToTimeSpanConverter}}"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Конец:  " VerticalOptions="Center" Margin="15,0,0,0"/>
-                                    <TimePicker Time="{Binding BMeeting.MeetingTimeEnd, Converter={StaticResource TimeStringToTimeConverter}}"/>
+                                    <TimePicker Time="{Binding BMeeting.MeetingTimeEnd, Converter={StaticResource DateTimeToTimeSpanConverter}}"/>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>

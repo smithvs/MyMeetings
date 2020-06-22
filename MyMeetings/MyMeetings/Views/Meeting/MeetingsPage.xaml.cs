@@ -24,7 +24,7 @@ namespace MyMeetings.Views
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new NavigationPage(new MeetingDetailPage(new MeetingDetailViewModel(new Meeting() { TimeStart = ViewModel.ActualDay.ToString("yyyy.MM.dd HH:mm"), TimeEnd = ViewModel.ActualDay.ToString("yyyy.MM.dd HH:mm") }))));
+            Navigation.PushModalAsync(new NavigationPage(new MeetingDetailPage(new MeetingDetailViewModel(new Meeting() { TimeStart = ViewModel.ActualDay, TimeEnd = ViewModel.ActualDay}))));
         }
 
         protected override async void OnAppearing()

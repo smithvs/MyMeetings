@@ -77,7 +77,7 @@ namespace MyMeetings.ViewModels
             
             MeetingOnActualDay.Clear();
             var meetings = await MeetingDataStore.GetMeetingsAsync(true);
-            meetings = meetings.Where(m => DateTime.ParseExact(m.TimeStart, "yyyy.MM.dd HH:mm", CultureInfo.InvariantCulture).Date == ActualDay.Date);
+            meetings = meetings.Where(m =>m.TimeStart.Date == ActualDay.Date);
             foreach (var item in meetings)
             {
                 MeetingOnActualDay.Add(item);

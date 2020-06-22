@@ -24,12 +24,12 @@ namespace MyMeetings.Models.Meetings
         /// <summary>
         /// Дата начала встречи
         /// </summary>
-        public string TimeStart { get; set; }
+        public DateTime TimeStart { get; set; }
 
         /// <summary>
         /// Дата конца встречи
         /// </summary>
-        public string TimeEnd { get; set; }
+        public DateTime TimeEnd { get; set; }
 
         /// <summary>
         /// Метка, которая говорит о том, отменена ли встреча
