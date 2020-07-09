@@ -27,7 +27,11 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Доход" Clicked="Income_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.BindingContext>
         <viewModels:MeetingsViewModel/>
     </ContentPage.BindingContext>

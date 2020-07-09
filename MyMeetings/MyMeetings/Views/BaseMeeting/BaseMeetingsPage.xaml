@@ -28,9 +28,15 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Настройки" Clicked="Setting_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.BindingContext>
         <viewModels:BaseMeetingsViewModel/>
     </ContentPage.BindingContext>
+
+    
 
     <ContentPage.Content>
         <Grid>

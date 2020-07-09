@@ -20,7 +20,17 @@ namespace MyMeetings.Views
 
         private void SaveButton_OnClicked(object sender, EventArgs e)
         {
-            Navigation.PopModalAsync();
+            var bc = BindingContext as BaseMeetingDetailViewModel;
+            if (bc.BMeeting.MeetingTimeStart.TimeOfDay >= bc.BMeeting.MeetingTimeEnd.TimeOfDay)
+                DisplayAlert("Ошибка данных", "Время начала встречи не может быть позже времени окончания", "Ок");
+            else if (bc.BMeeting.PeriodDateStart.Date >= bc.BMeeting.PeriodDateEnd.Date)
+                    DisplayAlert("Ошибка данных", "Период начала встреч не может быть периода окончания", "Ок");
+            else if (bc.BMeeting.Title is null || bc.BMeeting.Title.Length == 0)
+                DisplayAlert("Ошибка данных", "Заголовок должен быть заполнен", "Ок");
+            else if (bc.BMeeting.Client is null || bc.BMeeting.Client.Length == 0)
+                DisplayAlert("Ошибка данных", "Участник встречи должен быть заполнен", "Ок");
+            else
+                Navigation.PopModalAsync();
         }
 
         private void CancelButton_OnClicked(object sender, EventArgs e)

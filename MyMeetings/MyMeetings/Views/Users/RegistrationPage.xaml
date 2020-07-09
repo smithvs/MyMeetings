@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:MyMeetings.Converters;assembly=MyMeetings"
+             xmlns:viewModels="clr-namespace:MyMeetings.ViewModels;assembly=MyMeetings"
+             mc:Ignorable="d"
+             x:Class="MyMeetings.Views.RegistrationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpanConverter" />
+            <converters:DateTimeStringToDateStringConverter x:Key="DateTimeStringToDateStringConverter" />
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5,5"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:RegistrationViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="15,50,15,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label  Text="Логин:" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                <Entry Grid.Column="1" Text="{Binding UserInfo.Login}"/>
+            </Grid>
+            <Grid Padding="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label  Text="Пароль:" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                <Entry Grid.Column="1" IsPassword="True" Text="{Binding UserInfo.Password}" ClearButtonVisibility="WhileEditing"/>
+            </Grid>
+            <Grid Padding="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label  Text="Повтор:" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                <Entry Grid.Column="1" IsPassword="True" Text="{Binding PasswordReplay}" Completed="Entry_OnCompleted" ClearButtonVisibility="WhileEditing"/>
+            </Grid>
+            <Label Text="*Пароли не совпадают!" HorizontalOptions="Center" TextColor="Red" IsVisible="{Binding NoCorrectPassword}"/>
+            <Button Text="Регистрация" Margin="80,50"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

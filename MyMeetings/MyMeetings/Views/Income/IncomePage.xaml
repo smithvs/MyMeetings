@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:MyMeetings.ViewModels;assembly=MyMeetings"
+             mc:Ignorable="d"
+             x:Class="MyMeetings.Views.Income.IncomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#004D40" />
+                <Setter Property="BackgroundColor" Value="#80CBC4" />
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5,5"></Setter>
+                <Setter Property="Padding" Value="0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:IncomeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableRoot>
+                        <TableSection Title="Период проведения встреч">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Начало:" VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <DatePicker Format="D" Date="{Binding IncomeInfo.DateStart}"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Конец:  " VerticalOptions="Center" Margin="15,0,0,0"/>
+                                    <DatePicker Format="D" Date="{Binding IncomeInfo.DateEnd}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection Title="Информация">
+                            <EntryCell Label ="Проведено встреч:"  HorizontalTextAlignment="Center"  Text="{Binding IncomeInfo.CountMeetingWithIncome}" IsEnabled="False"/>
+                            <EntryCell Label="Доход:            "  HorizontalTextAlignment="Center"  Text="{Binding IncomeInfo.TotalIncome}" IsEnabled="False"/>
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+            <Button   HeightRequest="30" WidthRequest="100" Text="Рассчитать" Margin="20"
+                     HorizontalOptions="CenterAndExpand"
+                    Command="{Binding GetIncomeCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

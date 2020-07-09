@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using MyMeetings.Models.BaseMeeting;
+using MyMeetings.Views;
 using Xamarin.Forms;
 
 namespace MyMeetings.ViewModels
@@ -34,6 +35,8 @@ namespace MyMeetings.ViewModels
 
         private async Task SaveBaseMeeting()
         {
+            if (BMeeting.MeetingTimeEnd.TimeOfDay >= BMeeting.MeetingTimeEnd.TimeOfDay)
+                
             if (BMeeting.Id == 0)
             {
                 await BaseMeetingDataStore.AddBaseMeetingAsync(BMeeting);

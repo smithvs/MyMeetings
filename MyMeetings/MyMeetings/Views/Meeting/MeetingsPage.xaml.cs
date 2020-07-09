@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MyMeetings.Models.BaseMeeting;
 using MyMeetings.Models.Meetings;
 using MyMeetings.ViewModels;
+using MyMeetings.Views.Income;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -38,6 +39,11 @@ namespace MyMeetings.Views
         {
             if (meetingList.SelectedItem != null)
                 await Navigation.PushModalAsync(new NavigationPage(new MeetingDetailPage(new MeetingDetailViewModel(meetingList.SelectedItem as Meeting))));
+        }
+
+        private void Income_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new NavigationPage(new IncomePage()));
         }
     }
 }

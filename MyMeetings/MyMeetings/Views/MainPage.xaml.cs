@@ -12,6 +12,7 @@ namespace MyMeetings.Views
     {
         public MainPage()
         {
+            
             InitializeComponent();
         }
     }

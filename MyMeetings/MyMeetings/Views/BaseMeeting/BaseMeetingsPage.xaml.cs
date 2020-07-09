@@ -15,17 +15,14 @@ namespace MyMeetings.Views
     {
 
         BaseMeetingsViewModel ViewModel=> BindingContext as BaseMeetingsViewModel;
-
         public BaseMeetingsPage()
         {
             InitializeComponent();
         }
-
         private void Button_OnClicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new NavigationPage(new BaseMeetingDetailPage(new BaseMeetingDetailViewModel(new BaseMeeting() { DayWeek = ViewModel.ActualDay}))));
         }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -37,6 +34,11 @@ namespace MyMeetings.Views
         {
             if (baseMeetingList.SelectedItem != null)
                 await Navigation.PushModalAsync(new NavigationPage(new BaseMeetingDetailPage(new BaseMeetingDetailViewModel(baseMeetingList.SelectedItem as BaseMeeting))));
+        }
+
+        private async void Setting_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new SettingsPage()));
         }
     }
 }

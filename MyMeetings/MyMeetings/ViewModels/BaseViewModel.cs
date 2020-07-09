@@ -15,6 +15,8 @@ namespace MyMeetings.ViewModels
         public IBaseMeetingDataStore BaseMeetingDataStore => DependencyService.Get<IBaseMeetingDataStore>();
         public IMeetingDataStore MeetingDataStore => DependencyService.Get<IMeetingDataStore>();
 
+        public IUserDataStore UserDataStore => DependencyService.Get<IUserDataStore>();
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         bool isBusy = false;
